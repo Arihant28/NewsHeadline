@@ -18,10 +18,6 @@ class NewsRepository @Inject constructor(
     private val appExecutors: AppExecutors = AppExecutors()
 ) {
 
-    /**
-     * Fetch the news articles from database if exist else fetch from web
-     * and persist them in the database
-     */
     fun getNewsArticles(): LiveData<Resource<List<NewsArticles>?>> {
         return object : NetworkBoundResource<List<NewsArticles>, NewsSource>(appExecutors) {
             override fun saveCallResult(item: NewsSource) {

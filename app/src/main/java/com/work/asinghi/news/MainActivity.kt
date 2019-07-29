@@ -1,8 +1,8 @@
 package com.work.asinghi.news
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.work.asinghi.news.adapter.NewsAdapter
 import com.work.asinghi.news.data.network.Status
-import com.work.asinghi.news.di.Injectable
 import com.work.asinghi.news.viewmodel.NewsViewModel
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -19,7 +18,6 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
-    //private val newsViewModel by lazy { ViewModelProviders.of(this).get(NewsViewModel::class.java) }
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 

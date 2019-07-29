@@ -13,8 +13,5 @@ class NewsViewModel @Inject constructor(
 
     private var newsArticles: LiveData<Resource<List<NewsArticles>?>> = newsRepository.getNewsArticles()
 
-    /**
-     * Return news articles to observe on the UI.
-     */
     fun getNewsArticles() = newsArticles
 }

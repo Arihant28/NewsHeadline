@@ -7,25 +7,13 @@ import androidx.lifecycle.MediatorLiveData
 import com.work.asinghi.news.AppExecutors
 import com.work.asinghi.news.data.network.Resource
 
-/**
- * Created by Stephen Murphy on 2019-07-27.
- *
- * Copyright (C) 2019 Lowe's Companies Inc.
- *
- *  This application is the private property of Lowe's Companies Inc.
- *  Any distribution of this software is unlawful and prohibited.
- */
 abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constructor(
     private val appExecutors: AppExecutors
 ) {
 
-    /**
-     * The final result LiveData
-     */
     private val result = MediatorLiveData<Resource<ResultType?>>()
 
     init {
-        // Send loading state to UI
         result.value = Resource.loading()
         val dbSource = this.loadFromDb()
         result.addSource(dbSource) { data ->
@@ -38,13 +26,8 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
         }
     }
 
-    /**
-     * Fetch the data from network and persist into DB and then
-     * send it back to UI.
-     */
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
         val apiResponse = createCall()
-        // we re-attach dbSource as a new source, it will dispatch its latest value quickly
         result.addSource(dbSource) { result.setValue(Resource.loading()) }
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
@@ -55,9 +38,6 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                     appExecutors.diskIO().execute {
                         processResponse(this)?.let { requestType -> saveCallResult(requestType) }
                         appExecutors.mainThread().execute {
-                            // we specially request a new live data,
-                            // otherwise we will get immediately last cached value,
-                            // which may not be updated with latest results received from network.
                             result.addSource(loadFromDb()) { newData -> setValue(Resource.success(newData)) }
                         }
                     }
