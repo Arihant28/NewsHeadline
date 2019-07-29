@@ -17,13 +17,13 @@
                 android:layout_height="180sp">
 
             <ImageView
-                    android:id="@+id/ivNewsImage"
+                    android:id="@+id/NewsImage"
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
                     android:scaleType="centerCrop"/>
 
             <TextView
-                    android:id="@+id/tvNewsAuthor"
+                    android:id="@+id/NewsAuthor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -39,7 +39,7 @@
 
         <!-- News Title -->
         <TextView
-                android:id="@+id/tvNewsItemTitle"
+                android:id="@+id/NewsItemTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeItemImage"
@@ -51,10 +51,10 @@
 
         <!-- Date - Time -->
         <TextView
-                android:id="@+id/tvListItemDateTime"
+                android:id="@+id/ListItemDateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvNewsItemTitle"
+                android:layout_below="@+id/NewsItemTitle"
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="5dp"
                 android:maxLines="2"

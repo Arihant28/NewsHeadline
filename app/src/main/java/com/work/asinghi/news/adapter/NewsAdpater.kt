@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.row_news.view.*
 class NewsAdapter(
     private val listener: (NewsArticles) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.NewsHolder>() {
-    
+
     private var newsArticles: List<NewsArticles> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -28,13 +28,13 @@ class NewsAdapter(
 
         fun bind(newsArticle: NewsArticles, listener: (NewsArticles) -> Unit) = with(itemView) {
 
-            tvNewsItemTitle.text = newsArticle.title
-            tvNewsAuthor.text = newsArticle.author
+            NewsItemTitle.text = newsArticle.title
+            NewsAuthor.text = newsArticle.author
 
-            tvListItemDateTime.text = newsArticle.publishedAt
+            ListItemDateTime.text = newsArticle.publishedAt
             Picasso.with(context)
                 .load(newsArticle.urlToImage)
-                .into(ivNewsImage)
+                .into(NewsImage)
             setOnClickListener { listener(newsArticle) }
 
 
